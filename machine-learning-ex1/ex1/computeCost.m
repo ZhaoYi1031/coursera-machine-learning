@@ -17,6 +17,7 @@ for i = 1:1:m%1:m
     %disp("i="+i)
     ytheta = theta(1) * X(i,1) + theta(2) * X(i,2);%theta(1) + theta(2)*X(i)
     J = J + (ytheta-y(i))*(ytheta-y(i))/(m*2)
+
 % disp(X)
 % disp(theta)
 

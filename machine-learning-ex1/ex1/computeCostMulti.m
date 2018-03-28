@@ -13,9 +13,15 @@ J = 0;
 % Instructions: Compute the cost of a particular choice of theta
 %               You should set J to the cost.
 
-
-
-
+row = size(X, 2);
+for i = 1:1:m%1:m
+    %disp("i="+i)
+    ytheta = 0;
+    for j = 1:row
+        ytheta = ytheta + theta(j) * X(i,j);%theta(1) + theta(2)*X(i)
+    end
+    J = J + (ytheta-y(i))*(ytheta-y(i))/(m*2);
+end
 
 % =========================================================================
 

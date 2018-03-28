@@ -54,11 +54,11 @@ disp('------')
 % disp(sigma)
 disp('------')
 % disp(X*sigma)
-[X mu sigma] = featureNormalize(X);
+[X mu sigma] = featureNormalize(X); %只对我们用到的影响因素(特征)进行特征缩放，新增的那一列1由于方差什么的不影响因此不要特征缩放
 disp(sigma)
 
 % Add intercept term to X
-X = [ones(m, 1) X];
+X = [ones(m, 1) X]; %直接把刚刚缩放好的特征加上这一列的1
 
 
 %% ================ Part 2: Gradient Descent ================
@@ -111,7 +111,12 @@ fprintf('\n');
 % Recall that the first column of X is all-ones. Thus, it does
 % not need to be normalized.
 price = 0; % You should change this
+testHouse = [1, 1650, 3];
+testHouse(2)=(testHouse(2)-mu(1))/sigma(1); %!!!!一定要做特征缩放，因为之前训练求出的theta就是训练出的，否则求出来的price非常大！
+testHouse(3)=(testHouse(3)-mu(2))/sigma(2);
 
+
+price = testHouse * theta;
 
 % ============================================================
 
@@ -156,7 +161,8 @@ fprintf('\n');
 % Estimate the price of a 1650 sq-ft, 3 br house
 % ====================== YOUR CODE HERE ======================
 price = 0; % You should change this
-
+testHouse = [1; 1650; 3];
+price = theta' * testHouse;
 
 % ============================================================
 
